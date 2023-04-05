@@ -1,0 +1,140 @@
+<div class="notebook">
+
+<div class="nb-cell markdown" name="md4">
+Question 1
+</div>
+
+<div class="nb-cell program" name="p1">
+%fatcs
+food(burger).
+food(sandwich).
+food(pizza).
+lunch(sandwich).
+dinner(pizza).
+
+%Rules
+meal(X) :- food(X).
+</div>
+
+<div class="nb-cell query" name="q1">
+food(pizza).
+</div>
+
+<div class="nb-cell query" name="q2">
+meal(X),lunch(X).
+</div>
+
+<div class="nb-cell query" name="q3">
+dinner(sandwich).
+</div>
+
+<div class="nb-cell markdown" name="md1">
+Question 2
+</div>
+
+<div class="nb-cell program" name="p2">
+%Facts
+studies(charlie,csc135).
+studies(olivia,csc135).
+studies(jack,csc131).
+studies(arthur,csc134).
+
+teaches(kirke, csc135).
+teaches(collins, csc131).
+teaches(collins, csc171).
+teaches(juniper, csc134).
+
+%Rules
+professor_of(X, Y) :- teaches(X, C), studies(Y, C).
+studying(X, C) :- teaches(Y, X), teaches(Y, C).
+</div>
+
+<div class="nb-cell query" name="q4">
+studies(charlie,X)
+
+</div>
+
+<div class="nb-cell query" name="q5">
+professor_of(kirke, Student).
+
+</div>
+
+<div class="nb-cell markdown" name="md2">
+Question 3
+</div>
+
+<div class="nb-cell program" name="p3">
+%Facts
+owns(jack, bmw_car).
+owns(john, chevy_car).
+owns(olivia, civic_car).
+owns(jane, chevy_car).
+sedan(bmw_car).
+sedan(civic_car).
+truck(chevy_car).
+
+%Rules
+owns_sedan(X) :- owns(X, Car), sedan(Car).
+owns_truck(X) :- owns(X, Car), truck(Car).
+</div>
+
+<div class="nb-cell query" name="q6">
+owns(john, X).
+</div>
+
+<div class="nb-cell query" name="q7">
+owns(john, _).
+</div>
+
+<div class="nb-cell query" name="q8">
+owns(X, chevy_car).
+</div>
+
+<div class="nb-cell query" name="q9">
+owns_sedan(jane).
+</div>
+
+<div class="nb-cell query" name="q10">
+owns_truck(jane).
+</div>
+
+<div class="nb-cell markdown" name="md3">
+Question 4
+</div>
+
+<div class="nb-cell program" name="p4">
+%Facts
+male(jack).
+male(oliver).
+male(ali).
+male(james).
+male(simon).
+male(harry).
+
+female(helen).
+female(sophie).
+female(jess).
+female(lily).
+
+parent_of(jack, jess).
+parent_of(jack, lily).
+parent_of(helen, jess).
+parent_of(helen, lily).
+parent_of(oliver, james).
+parent_of(sophie, james).
+parent_of(jess, simon).
+parent_of(ali, simon).
+parent_of(lily, harry).
+parent_of(james, harry).
+
+%Rules
+father_of(X, Y) :- male(X), parent_of(X, Y).
+grandfather_of(X, Y) :- male(X), parent_of(X, Z), parent_of(Z, Y).
+sister_of(X, Y) :- female(X), father_of(F, Y), father_of(F, X), X \= Y.
+uncle_of(X, Y) :- parent_of(Z, Y), brother_of(X, Z).
+
+% Rules for brother_of predicate, which is used in uncle_of predicate
+brother_of(X, Y) :- male(X), parent_of(Z, X), parent_of(Z, Y), X \= Y.
+</div>
+
+</div>
